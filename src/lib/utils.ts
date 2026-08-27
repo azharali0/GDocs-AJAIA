@@ -1,5 +1,3 @@
-import { type ClassValue } from "react";
-
 /**
  * Simple utility to conditionally join class names
  */

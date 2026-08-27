@@ -19,7 +19,7 @@ export default async function EditorPage({ params }: { params: Promise<{ id: str
   return (
     <Editor 
       documentId={doc.id} 
-      initialContent={doc.content} 
+      initialContent={typeof doc.content === 'string' ? doc.content : JSON.stringify(doc.content)} 
       title={doc.title}
       readOnly={readOnly}
       isOwner={isOwner}
