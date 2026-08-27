@@ -1,0 +1,44 @@
+// Ajaia Docs - Collaborative Document Editor
+// Database schema for users, documents, and sharing
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  password  String     // bcrypt hash
+  documents Document[] @relation("owner")
+  shares    Share[]
+  createdAt DateTime   @default(now())
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  title     String   @default("Untitled Document")
+  content   Json     @default("{}")  // Tiptap JSON content
+  ownerId   String
+  owner     User     @relation("owner", fields: [ownerId], references: [id])
+  shares    Share[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Share {
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([documentId, userId])
+}

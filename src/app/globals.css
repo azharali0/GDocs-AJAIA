@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #f8f9fa;
+  --bg-surface: #ffffff;
+  --bg-glass: rgba(0, 0, 0, 0.04);
+  --bg-glass-hover: rgba(0, 0, 0, 0.08);
+  --accent: #1f1f1f;
+  --accent-hover: #cc5500; /* Dark orange */
+  --accent-glow: rgba(204, 85, 0, 0.15);
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border: #dadce0;
+  --border-focus: #cc5500;
+  --radius: 8px;
+  --shadow-glass: 0 1px 3px rgba(60,64,67,0.12), 0 1px 2px rgba(60,64,67,0.24);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --danger: #d93025;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base elements */
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* Shared UI Classes */
+.glass-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-glass);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--bg-glass);
+  color: var(--text-primary);
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-glass-hover);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-danger {
+  color: var(--danger);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.btn-danger:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.input-field {
+  width: 100%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: var(--border-focus);
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Tiptap Editor Styles */
+.tiptap-editor .tiptap {
+  min-height: 500px;
+  outline: none;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.tiptap-editor .tiptap p.is-editor-empty:first-child::before {
+  color: var(--text-secondary);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.tiptap-editor .tiptap h1,
+.tiptap-editor .tiptap h2,
+.tiptap-editor .tiptap h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.tiptap-editor .tiptap ul,
+.tiptap-editor .tiptap ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
