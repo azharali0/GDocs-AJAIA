@@ -31,8 +31,10 @@ function LoginContent() {
       if (result?.error) {
         setError("Invalid email or password");
         setIsLoading(false);
-      } else if (result?.url) {
-        router.push(result.url);
+      } else {
+        // Force refresh and push to dashboard on successful login
+        router.refresh();
+        router.push("/dashboard");
       }
     } catch (err) {
       setError("An unexpected error occurred");
